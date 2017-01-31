@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">IAP</string>
+    <string name="bazaar">bazaar</string>
+    <string name="iranapps">iranapps</string>
+    <string name="myket">myket</string>
+    <string name="bazaar_title">کافه بازار</string>
+    <string name="iranapps_title">ایران اپس</string>
+    <string name="myket_title">مایکت</string>
+    <string name="bazaar_package">com.farsitel.bazaar</string>
+    <string name="iranapps_package">ir.tgbs.android.iranapp</string>
+    <string name="myket_package">ir.mservices.market</string>
+</resources>
