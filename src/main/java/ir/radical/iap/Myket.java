@@ -23,7 +23,6 @@ public class Myket extends Pay {
 
     IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener;
     IabHelper.QueryInventoryFinishedListener mGotInventoryListener;
-    String base64EncodedPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQChBhWGvJDpzawHvrd5XAlKsFsBxBC56pHMFeIzrcgGgRm9VHl0tStLGR6p/vitsfRiT16RJ3U7Zj+avXTTLiz8m0HLyneLP9QcTcY31KVpULpqbpoIH6DBv36nRgTwsf27hbVv1N+l9zvNFBOZSGvgsN35pXdmtPJYxojV0zdT3wIDAQAB";
 
     public boolean setupError = false;
 
@@ -70,7 +69,7 @@ public class Myket extends Pay {
 
     @Override
     public void startSetup() {
-        mHelper = new IabHelper(mContext, base64EncodedPublicKey);
+        mHelper = new IabHelper(mContext, publicKey);
         mHelper.market_package_name = "ir.mservices.market";
         mHelper.market_package_bind = "ir.mservices.market.InAppBillingService.BIND";
 
@@ -139,7 +138,7 @@ public class Myket extends Pay {
     @Override
     public String getPublicKey() {
         if (publicKey == null || publicKey.length() == 0){
-            Utils.getMetaData(mContext, getMarketName() + "_key");
+            publicKey = Utils.getMetaData(mContext, getMarketName() + "_key");
         }
         return publicKey;
     }

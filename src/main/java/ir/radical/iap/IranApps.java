@@ -24,7 +24,6 @@ public class IranApps extends Pay {
 
     IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener;
     IabHelper.QueryInventoryFinishedListener mGotInventoryListener;
-    String base64EncodedPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDckAGEYsAMQHLdEPX351xIEntARIE6866jK75ShbD3VZHTzh+xdMc+egJXQX9srFBTZTUHcQUElaeJJaGoQBsQ3nwXVkbRduFkuzAYpscGeaX1o7ZwPsD/er0gxT/amxWYLSm7q602Btki/0Ptn26zTA0fZ6UpxpBI1rOGIj3rkQIDAQAB";
 
     public boolean setupError = false;
 
@@ -72,7 +71,7 @@ public class IranApps extends Pay {
 
     @Override
     public void startSetup() {
-        mHelper = new IabHelper(mContext, base64EncodedPublicKey);
+        mHelper = new IabHelper(mContext, publicKey);
         mHelper.market_package_name = "ir.tgbs.android.iranapp";
         mHelper.market_package_bind = "ir.tgbs.iranapps.billing.InAppBillingService.BIND";
 
@@ -141,7 +140,7 @@ public class IranApps extends Pay {
     @Override
     public String getPublicKey() {
         if (publicKey == null || publicKey.length() == 0){
-            Utils.getMetaData(mContext, getMarketName() + "_key");
+            publicKey = Utils.getMetaData(mContext, getMarketName() + "_key");
         }
         return publicKey;
     }

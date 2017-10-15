@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IAP</string>
+    <string name="lib_name">IAP</string>
     <string name="bazaar">bazaar</string>
     <string name="iranapps">iranapps</string>
     <string name="myket">myket</string>

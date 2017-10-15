@@ -24,7 +24,6 @@ public class Bazaar extends Pay {
 
     IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener;
     IabHelper.QueryInventoryFinishedListener mGotInventoryListener;
-    String base64EncodedPublicKey = "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDe4nfyk7GxC6isaVuED6GQEEihLfwtXpiUUcBaraW42oa1lMgfy2WqLSdeZVH9dCnuPKRZc5t59s9rHr75I5yLjfC9WNvhjfN7NEHnaa79JJCO0LImGdnKzXvoJ+piNZSMWDEEYWCQwUU8YlqAz1bwILrUw0XnKsZoZH1jqYxs0isMh3w+OUe7CZ1YxjxotVYjn3RSn63y76NPICR48svfP/s5BCRHjy9hbBbbMzsCAwEAAQ==";
 
     public boolean setupError = false;
 
@@ -72,7 +71,7 @@ public class Bazaar extends Pay {
 
     @Override
     public void startSetup() {
-        mHelper = new IabHelper(mContext, base64EncodedPublicKey);
+        mHelper = new IabHelper(mContext, publicKey);
         mHelper.market_package_name = "com.farsitel.bazaar";
         mHelper.market_package_bind = "ir.cafebazaar.pardakht.InAppBillingService.BIND";
 
@@ -141,7 +140,7 @@ public class Bazaar extends Pay {
     @Override
     public String getPublicKey() {
         if (publicKey == null || publicKey.length() == 0){
-            Utils.getMetaData(mContext, getMarketName() + "_key");
+            publicKey = Utils.getMetaData(mContext, getMarketName() + "_key");
         }
         return publicKey;
     }
