@@ -3,6 +3,8 @@ package ir.radical.iap;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import ir.radical.iap.util.IabHelper;
@@ -140,7 +142,9 @@ public class IranApps extends Pay {
     @Override
     public String getPublicKey() {
         if (publicKey == null || publicKey.length() == 0){
-            publicKey = Utils.getMetaData(mContext, getMarketName() + "_key");
+//            publicKey = Utils.getMetaData(mContext, getMarketName() + "_key");
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+            publicKey = preferences.getString("key", "");
         }
         return publicKey;
     }

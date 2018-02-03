@@ -2,7 +2,9 @@ package ir.radical.iap;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.preference.PreferenceManager;
 
 import ir.radical.iap.Enum.Market;
 
@@ -10,16 +12,13 @@ import ir.radical.iap.Enum.Market;
  * Created by ali on 12/18/16.
  */
 
-public abstract class Pay{
-
+public abstract class Pay {
     public Pay(){}
     public Pay(Context context){
         this.mContext = context;
     }
 
     public static Market getMarket(Context context){
-        Pay res;
-
         String permissionBazaar = "com.farsitel.bazaar.permission.PAY_THROUGH_BAZAAR";
         String permissionIranApps = "ir.tgbs.iranapps.permission.BILLING";
         String permissionMyket = "ir.mservices.market.BILLING";
@@ -36,7 +35,6 @@ public abstract class Pay{
 
     public static Pay getPayment(Context context){
         Pay res;
-
         Market market = getMarket(context);
         if (market == Market.IranApps) {
             res = new IranApps(context);
@@ -49,6 +47,11 @@ public abstract class Pay{
             res.getPublicKey();
         }
         return res;
+    }
+
+    public static void setPublicKey(Context context, String key) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        preferences.edit().putString("key", key).commit();
     }
 
     public interface OnIabPurchaseFinishedListener{
