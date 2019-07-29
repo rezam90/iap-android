@@ -22,7 +22,7 @@ public class Bazaar extends Pay {
     static final String TAG = "Bazaar";
 
     // The helper object
-    private IabHelper mHelper;
+    public IabHelper mHelper;
 
     IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener;
     IabHelper.QueryInventoryFinishedListener mGotInventoryListener;
